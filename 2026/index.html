@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Davie's Naturals — Rest of 2026 Growth Strategy</title>
+<link rel="icon" href="favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@500;600;700;800;900&family=Figtree:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --graphite:#181B1F; --bone:#F2F4F6; --orange:#F67A1C; --orange-dark:#D4650F;
+    --blue:#1273C8; --char:#21252B; --border:#2B2F36; --muted:#8A9099;
+    --font-display:'Gabarito',system-ui,sans-serif;
+    --font-body:'Figtree',-apple-system,'Helvetica Neue',sans-serif;
+    --font-mono:'IBM Plex Mono',ui-monospace,'SF Mono',monospace;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:var(--font-body);background:var(--graphite);color:var(--bone);overflow-x:hidden;}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--char);border-bottom:1px solid var(--border);height:60px;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;}
+  .nav-brand{font-family:var(--font-display);font-size:1.25rem;font-weight:800;color:var(--bone);letter-spacing:.01em;white-space:nowrap;}
+  .nav-brand span{color:var(--orange);}
+  .nav-links{display:flex;align-items:center;}
+  .nav-links a{padding:0 .75rem;line-height:60px;font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s;white-space:nowrap;}
+  .nav-links a:hover{color:var(--orange);}
+  .hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:4px;width:36px;height:36px;}
+  .hamburger span{display:block;width:22px;height:2px;background:var(--bone);transition:all .3s;}
+
+  .nav-mobile{display:none;position:fixed;top:60px;left:0;right:0;z-index:99;background:var(--char);border-bottom:1px solid var(--border);max-height:calc(100vh - 60px);overflow-y:auto;}
+  .nav-mobile.open{display:block;}
+  .nav-mobile a{display:block;padding:.85rem 1.5rem;font-family:var(--font-mono);font-size:.8rem;font-weight:600;letter-spacing:.08em;color:var(--muted);text-decoration:none;text-transform:uppercase;border-bottom:1px solid var(--border);transition:color .2s;}
+  .nav-mobile a:hover{color:var(--orange);}
+
+  #progress{position:fixed;top:60px;left:0;right:0;z-index:99;height:3px;background:var(--orange);transform-origin:left;transform:scaleX(0);transition:transform .1s linear;}
+
+  /* COVER */
+  #cover{min-height:100vh;background:var(--graphite);display:grid;place-items:center;padding:6rem 2rem 4rem;position:relative;overflow:hidden;}
+  #cover::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(246,122,28,0.10) 0%,transparent 60%);pointer-events:none;}
+  .cover-inner{max-width:1200px;width:100%;}
+  .cover-title{font-family:var(--font-display);font-weight:900;line-height:.95;}
+  .cover-title .line-white{font-size:clamp(2.6rem,9.5vw,8.5rem);color:var(--bone);display:block;}
+  .cover-title .line-accent{font-size:clamp(1.5rem,4.4vw,3.6rem);color:var(--orange);display:block;margin-top:.4rem;}
+  .cover-rule{width:100%;height:2px;background:var(--orange);margin:2rem 0;transform:scaleX(0);transform-origin:left;animation:ruleIn .8s .6s cubic-bezier(.16,1,.3,1) forwards;}
+  @keyframes ruleIn{to{transform:scaleX(1);}}
+  .trust-badge{display:inline-flex;align-items:center;gap:10px;background:var(--char);border:1px solid var(--border);border-radius:999px;padding:9px 20px;font-family:var(--font-body);font-size:.85rem;color:var(--bone);margin-bottom:1.5rem;}
+  .trust-dot{width:9px;height:9px;border-radius:50%;background:var(--blue);flex-shrink:0;}
+  .cover-byline{font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.16em;color:#5b6169;text-transform:uppercase;margin-top:.5rem;}
+  .fade-up{opacity:0;transform:translateY(24px);animation:fadeUp .7s cubic-bezier(.16,1,.3,1) forwards;}
+  @keyframes fadeUp{to{opacity:1;transform:none;}}
+  .trust-badge{animation-delay:.2s;}.cover-title{animation-delay:.4s;}.cover-byline{animation-delay:.95s;}
+
+  /* SECTIONS */
+  .content{max-width:1080px;margin:0 auto;padding:0 3rem;}
+  .section{padding:5rem 0 2rem;opacity:0;transform:translateY(32px);transition:opacity .6s ease,transform .6s ease;}
+  .section.visible{opacity:1;transform:none;}
+  .section-header{background:var(--char);border:1px solid var(--border);border-radius:14px;padding:1.1rem 1.5rem;display:flex;align-items:baseline;gap:.75rem;margin-bottom:2rem;}
+  .section-num{font-family:var(--font-mono);font-size:.85rem;font-weight:600;letter-spacing:.1em;color:var(--orange);}
+  .section-title{font-family:var(--font-display);font-size:1.85rem;font-weight:800;letter-spacing:.005em;color:var(--bone);}
+  .section-title .accent{color:var(--orange);}
+  .sub-heading{font-family:var(--font-display);font-size:1.15rem;font-weight:700;color:var(--bone);border-left:4px solid var(--orange);padding-left:.75rem;margin:2rem 0 .85rem;}
+  .accent-label{font-family:var(--font-mono);font-size:.72rem;font-weight:600;letter-spacing:.14em;color:var(--orange);text-transform:uppercase;margin:1.5rem 0 .5rem;}
+  p{font-size:1.02rem;line-height:1.7;color:var(--bone);margin-bottom:.85rem;}
+  .callout{background:var(--char);border:1px solid var(--border);border-left:4px solid var(--orange);border-radius:10px;padding:1rem 1.25rem;margin:1.5rem 0;}
+  .callout p{color:var(--bone);font-style:italic;margin:0;}
+
+  .term-highlight{background:var(--char);border:1px solid var(--border);border-left:4px solid var(--orange);border-radius:10px;padding:1.1rem 1.35rem;margin:1rem 0 1.5rem;}
+  .term-highlight-tags{display:flex;flex-wrap:wrap;gap:.6rem;}
+  .term-tag{background:var(--border);color:var(--bone);font-family:var(--font-mono);font-size:.78rem;font-weight:600;letter-spacing:.02em;padding:.5rem 1rem;border-radius:6px;white-space:nowrap;border-left:3px solid var(--orange);}
+
+  .bullet-list{list-style:none;margin:.5rem 0 1rem 0;}
+  .bullet-list li{font-size:.98rem;line-height:1.65;color:var(--bone);padding:.25rem 0 .25rem 1.4rem;position:relative;}
+  .bullet-list li::before{content:'–';position:absolute;left:0;color:var(--orange);font-weight:700;}
+  .bullet-list.compact li{padding:.18rem 0 .18rem 1.4rem;}
+
+  .term-block{margin:1rem 0 1.5rem;}
+  .term-block-label{font-family:var(--font-mono);font-size:.72rem;font-weight:600;letter-spacing:.14em;color:var(--blue);text-transform:uppercase;margin-bottom:.4rem;}
+
+  /* COMMENTS (per section) */
+  .section-comment-btn{display:inline-flex;align-items:center;gap:.4rem;margin-top:1.5rem;background:transparent;border:1.5px solid var(--border);border-radius:999px;padding:.45rem .9rem;cursor:pointer;font-family:var(--font-mono);font-size:.74rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);transition:all .2s;}
+  .section-comment-btn:hover{border-color:var(--orange);color:var(--orange);}
+  .section-comment-btn .cb-count{background:var(--orange);color:var(--graphite);font-size:.7rem;font-weight:700;padding:.1rem .4rem;border-radius:999px;min-width:20px;text-align:center;display:none;}
+  .section-comment-btn.has-comments .cb-count{display:inline-block;}
+  .comment-panel{display:none;border:1px solid var(--border);border-radius:10px;background:var(--char);margin-top:.75rem;}
+  .comment-panel.open{display:block;}
+  .comment-panel-inner{padding:1.25rem;}
+  .comment-item{border-left:3px solid var(--orange);border-radius:0 6px 6px 0;padding:.75rem 1rem;margin-bottom:.75rem;background:var(--border);}
+  .comment-item-header{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:.25rem;margin-bottom:.35rem;}
+  .comment-item-name{font-family:var(--font-display);font-weight:700;font-size:.95rem;color:var(--bone);}
+  .comment-item-time{font-size:.72rem;color:var(--muted);}
+  .comment-item-text{font-size:.92rem;line-height:1.6;color:var(--bone);}
+  .no-comments{font-size:.88rem;color:var(--muted);font-style:italic;margin-bottom:1rem;}
+  .comment-form textarea{width:100%;padding:.6rem .75rem;border:1px solid var(--border);border-radius:8px;font-family:var(--font-body);font-size:.92rem;resize:vertical;outline:none;background:var(--graphite);color:var(--bone);display:block;margin-bottom:.5rem;}
+  .comment-form-row{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;}
+  .comment-form input[type=text]{flex:1;min-width:140px;padding:.5rem .65rem;border:1px solid var(--border);border-radius:8px;font-family:var(--font-body);font-size:.92rem;outline:none;background:var(--graphite);color:var(--bone);}
+  .comment-post-btn{background:var(--orange);color:var(--graphite);border:none;border-radius:999px;padding:.5rem 1.25rem;font-family:var(--font-body);font-size:.88rem;font-weight:600;cursor:pointer;white-space:nowrap;}
+  .comment-post-btn:hover{background:var(--orange-dark);}
+  .comment-post-btn:disabled{opacity:.5;cursor:default;}
+  .comment-status{font-size:.8rem;color:var(--muted);margin-top:.35rem;}
+
+  /* FOOTER */
+  footer{background:var(--char);border-top:1px solid var(--border);padding:4rem 3rem;display:flex;justify-content:center;align-items:center;}
+  .ftr-mark{width:120px;height:auto;margin:0 auto 1rem;display:block;}
+  .footer-claim{font-family:var(--font-display);font-size:clamp(1.5rem,4vw,2.4rem);font-weight:900;color:var(--orange);margin-bottom:.6rem;}
+  .footer-label{font-family:var(--font-mono);font-size:.74rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);}
+
+  /* ================= TRACKER ================= */
+  .tk-phase{margin-bottom:2.5rem;}
+  .tk-phase-hdr{display:flex;align-items:center;gap:1rem;margin-bottom:.35rem;}
+  .tk-phase-rule{flex:1;height:1px;background:var(--border);}
+  .tk-phase-pill{background:var(--graphite);border:1px solid var(--border);border-radius:999px;padding:.5rem 1.25rem;flex-shrink:0;}
+  .tk-phase-lbl{font-family:var(--font-mono);font-size:.76rem;font-weight:600;letter-spacing:.12em;color:var(--bone);text-transform:uppercase;}
+  .tk-phase-count{font-family:var(--font-mono);font-size:.7rem;color:var(--orange);text-align:center;margin-bottom:1rem;letter-spacing:.08em;}
+
+  .tk-progress-wrap{background:var(--char);border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.4rem;margin-bottom:2rem;display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;}
+  .tk-progress-stat{font-family:var(--font-display);font-size:1.5rem;font-weight:900;color:var(--bone);white-space:nowrap;}
+  .tk-progress-stat span{color:var(--orange);}
+  .tk-progress-track{flex:1;min-width:160px;height:8px;background:var(--border);border-radius:4px;overflow:hidden;}
+  .tk-progress-fill{height:100%;background:var(--orange);border-radius:4px;transition:width .5s ease;}
+  .tk-progress-lbl{font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+
+  .tk-body-mobile{display:flex;flex-direction:column;gap:.85rem;}
+  .tk-card{background:var(--char);border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.25rem 1.25rem;}
+  .tk-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;padding-bottom:.9rem;border-bottom:1px solid var(--border);margin-bottom:1rem;}
+  .tk-action-wrap{flex:1;min-width:0;}
+  .tk-action{font-size:1rem;font-weight:700;line-height:1.4;color:var(--bone);}
+  .tk-action.hidden{display:none;}
+  .tk-card-controls{display:flex;align-items:center;gap:.5rem;flex-shrink:0;}
+  .tk-icon-btn{position:relative;background:var(--graphite);border:1px solid var(--border);border-radius:8px;width:34px;height:34px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--muted);flex-shrink:0;transition:all .15s;}
+  .tk-icon-btn:hover{border-color:var(--orange);color:var(--orange);}
+  .tk-icon-btn.has-comments{color:var(--bone);}
+  .tk-comment-btn{position:relative;background:var(--graphite);border:1px solid var(--border);border-radius:8px;height:34px;padding:0 .65rem;cursor:pointer;display:inline-flex;align-items:center;gap:.35rem;color:var(--muted);flex-shrink:0;transition:all .15s;font-family:var(--font-mono);font-size:.66rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;}
+  .tk-comment-btn:hover{border-color:var(--orange);color:var(--orange);}
+  .tk-comment-btn.has-comments{color:var(--bone);border-color:#3a3f47;}
+  .tk-badge{position:absolute;top:-7px;right:-7px;background:var(--orange);color:var(--graphite);font-size:.62rem;font-weight:700;border-radius:8px;min-width:16px;height:16px;padding:0 3px;display:flex;align-items:center;justify-content:center;line-height:1;}
+
+  .tk-status-label{font-family:var(--font-mono);font-size:.66rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem;display:block;}
+  select.tk-status-select{width:100%;display:block;text-align:center;text-align-last:center;-moz-text-align-last:center;padding:.7rem 1rem;border:none;border-radius:10px;font-family:var(--font-display);font-weight:700;font-size:.9rem;cursor:pointer;appearance:none;-webkit-appearance:none;}
+  .tk-status-select.status-pending{background:var(--border);color:var(--muted);}
+  .tk-status-select.status-in-progress{background:rgba(18,115,200,0.16);color:var(--blue);}
+  .tk-status-select.status-complete{background:rgba(246,122,28,0.16);color:var(--orange);}
+
+  .tk-edit-wrap{display:none;margin-top:.4rem;}
+  .tk-edit-wrap.open{display:block;}
+  .tk-edit-textarea{width:100%;padding:.6rem .75rem;border:1.5px solid var(--orange);border-radius:8px;font-family:var(--font-body);font-size:.96rem;line-height:1.5;resize:vertical;outline:none;background:var(--graphite);color:var(--bone);display:block;margin-bottom:.5rem;min-height:64px;}
+  .tk-edit-actions{display:flex;gap:.5rem;}
+  .tk-edit-save{background:var(--orange);color:var(--graphite);border:none;border-radius:999px;padding:.45rem 1.1rem;font-family:var(--font-body);font-size:.8rem;font-weight:600;cursor:pointer;}
+  .tk-edit-save:hover{background:var(--orange-dark);}
+  .tk-edit-save:disabled{opacity:.5;cursor:default;}
+  .tk-edit-cancel{background:transparent;color:var(--muted);border:1.5px solid var(--border);border-radius:999px;padding:.45rem 1.1rem;font-family:var(--font-body);font-size:.8rem;font-weight:600;cursor:pointer;}
+  .tk-edit-cancel:hover{border-color:var(--orange);color:var(--orange);}
+
+  .tk-comment-panel{display:none;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);}
+  .tk-comment-panel.open{display:block;}
+  .tk-comment-thread{margin-bottom:.75rem;display:flex;flex-direction:column;gap:.6rem;}
+  .tk-comment-item{border-left:3px solid var(--orange);border-radius:0 6px 6px 0;padding:.6rem .85rem;background:var(--border);}
+  .tk-comment-item-header{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:.25rem;margin-bottom:.25rem;}
+  .tk-comment-item-name{font-family:var(--font-display);font-weight:700;font-size:.88rem;color:var(--bone);}
+  .tk-comment-item-time{font-size:.7rem;color:var(--muted);}
+  .tk-comment-item-text{font-size:.88rem;line-height:1.55;color:var(--bone);}
+  .tk-no-comments{font-size:.84rem;color:var(--muted);font-style:italic;margin-bottom:.75rem;}
+  .tk-comment-form textarea{width:100%;padding:.55rem .7rem;border:1px solid var(--border);border-radius:8px;font-family:var(--font-body);font-size:.88rem;resize:vertical;outline:none;background:var(--graphite);color:var(--bone);display:block;margin-bottom:.5rem;min-height:52px;}
+  .tk-comment-form-row{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;}
+  .tk-comment-form input[type=text]{flex:1;min-width:130px;padding:.5rem .6rem;border:1px solid var(--border);border-radius:8px;font-family:var(--font-body);font-size:.88rem;outline:none;background:var(--graphite);color:var(--bone);}
+  .tk-comment-post-btn{background:var(--orange);color:var(--graphite);border:none;border-radius:999px;padding:.5rem 1.1rem;font-family:var(--font-body);font-size:.84rem;font-weight:600;cursor:pointer;white-space:nowrap;}
+  .tk-comment-post-btn:hover{background:var(--orange-dark);}
+  .tk-comment-post-btn:disabled{opacity:.5;cursor:default;}
+  .tk-comment-status{font-size:.78rem;color:var(--muted);margin-top:.3rem;}
+
+  .tk-table-wrap{display:none;}
+  .tk-table{width:100%;border-collapse:collapse;background:var(--char);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+  .tk-table thead th{background:var(--graphite);color:var(--bone);font-family:var(--font-mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;text-align:left;padding:.75rem 1rem;font-weight:600;}
+  .tk-table thead th.tk-th-center{text-align:center;}
+  .tk-table tbody tr.tk-row{border-top:1px solid var(--border);}
+  .tk-table tbody tr.tk-row:hover{background:var(--border);}
+  .tk-table td{padding:.85rem 1rem;font-size:.92rem;color:var(--bone);vertical-align:middle;}
+  .tk-table td.tk-td-action{font-weight:600;line-height:1.4;}
+  .tk-table td.tk-td-status{width:190px;}
+  .tk-table td.tk-td-comments{width:70px;text-align:center;}
+  .tk-table td.tk-td-edit{width:50px;text-align:center;}
+  .tk-table td.tk-td-delete{width:50px;text-align:center;}
+  .tk-table select.tk-status-select{font-size:.78rem;padding:.5rem .5rem;}
+  .tk-comment-row{display:none;}
+  .tk-comment-row.open{display:table-row;}
+  .tk-comment-row td{padding:0;border-top:none;}
+  .tk-comment-row-inner{padding:1.1rem 1.5rem 1.25rem;background:var(--border);border-top:1px dashed var(--border);}
+
+  .tk-add-form{display:flex;gap:.6rem;margin-top:.75rem;flex-wrap:wrap;}
+  .tk-add-form input{flex:1;min-width:220px;font-family:var(--font-body);font-size:.94rem;padding:.55rem .7rem;border:1px solid var(--border);border-radius:8px;background:var(--graphite);color:var(--bone);}
+  .tk-add-btn{font-family:var(--font-body);font-weight:600;font-size:.84rem;padding:.55rem 1.1rem;border:none;border-radius:999px;cursor:pointer;background:var(--orange);color:var(--graphite);}
+  .tk-add-btn:hover{background:var(--orange-dark);}
+  .tk-add-toggle{margin-top:.9rem;background:none;border:2px dashed var(--border);border-radius:10px;width:100%;padding:.75rem;font-family:var(--font-mono);font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:.76rem;color:var(--muted);cursor:pointer;}
+  .tk-add-toggle:hover{border-color:var(--orange);color:var(--orange);}
+
+  /* RESPONSIVE */
+  @media(max-width:900px){
+    .nav-links{display:none;}
+    .hamburger{display:flex;}
+    .content{padding:0 1.25rem;}
+    nav{padding:0 1.25rem;}
+    footer{padding:3rem 1.25rem;}
+    .section-title{font-size:1.3rem;}
+    #cover{padding:5rem 1.25rem 3rem;}
+  }
+  @media(min-width:901px){
+    .tk-body-mobile{display:none;}
+    .tk-table-wrap{display:block;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">DAVIE'S <span>NATURALS</span></div>
+  <div class="nav-links">
+    <a href="#s01">Objective</a>
+    <a href="#s02">Snapshot</a>
+    <a href="#s03">Growth Area 1</a>
+    <a href="#s04">Advertising</a>
+    <a href="#s05">Growth Area 2</a>
+    <a href="#s06">Supporting</a>
+    <a href="#s07">Tracker</a>
+  </div>
+  <button class="hamburger" onclick="toggleMenu()" id="hbg">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="#s01" onclick="toggleMenu()">Objective</a>
+  <a href="#s02" onclick="toggleMenu()">Current Snapshot</a>
+  <a href="#s03" onclick="toggleMenu()">Growth Area 1: Category Share</a>
+  <a href="#s04" onclick="toggleMenu()">Advertising Strategy</a>
+  <a href="#s05" onclick="toggleMenu()">Growth Area 2: Sub&amp;Save</a>
+  <a href="#s06" onclick="toggleMenu()">Supporting Initiatives</a>
+  <a href="#s07" onclick="toggleMenu()">Roadmap &amp; Tracker</a>
+</div>
+<div id="progress"></div>
+
+<!-- COVER -->
+<section id="cover">
+  <div class="cover-inner">
+    <div class="trust-badge fade-up"><span class="trust-dot"></span>Trusted by 120+ brands for Amazon and Walmart growth.</div>
+    <div class="cover-title fade-up">
+      <span class="line-white">Davie's Naturals</span>
+      <span class="line-accent">2026 Growth Strategy</span>
+    </div>
+    <div class="cover-rule"></div>
+    <p class="cover-byline fade-up">Prepared by FTR &nbsp;·&nbsp; Amazon &amp; Walmart Growth</p>
+  </div>
+</section>
+
+<!-- S01 — OBJECTIVE -->
+<div class="section" id="s01">
+  <div class="content">
+    <div class="section-header"><span class="section-title">Objective</span></div>
+
+    <p>Rebuild Davie's share of the Sweet Potato Dog Treats niche by strengthening its presence and competitiveness across Amazon search results.</p>
+    <p>Davie's continues to convert strongly once shoppers reach the listing, but declining click and purchase share across core Sweet Potato searches is contributing to lower traffic and fewer opportunities to acquire new customers and subscribers.</p>
+    <p>The Rest of 2026 priority is to strengthen Davie's presence in search results, win back category share, and rebuild customer and subscriber growth.</p>
+
+    <div id="comments-s01"></div>
+  </div>
+</div>
+
+<!-- S02 — CURRENT SNAPSHOT -->
+<div class="section" id="s02">
+  <div class="content">
+    <div class="section-header"><span class="section-title">Current Snapshot</span></div>
+
+    <ul class="bullet-list">
+      <li>Sweet Potato Chews are now the clear focus of the Amazon business.</li>
+      <li>The 1 lb ASIN remains the primary sales and customer acquisition product.</li>
+      <li>PDP conversion remains strong, pointing to traffic acquisition rather than listing conversion as the primary opportunity.</li>
+      <li>Davie's is losing click and purchase share across its highest-intent Sweet Potato searches.</li>
+      <li>Organic presence on "sweet potato dog treats" is relevant but not strong enough to consistently compete for top placements.</li>
+      <li>Listing sessions have declined alongside the loss in search share.</li>
+      <li>Subscribe &amp; Save remains a major part of the business, but the active subscriber base has gradually declined during 2026.</li>
+    </ul>
+
+    <div id="comments-s02"></div>
+  </div>
+</div>
+
+<!-- S03 — GROWTH AREA 1 -->
+<div class="section" id="s03">
+  <div class="content">
+    <div class="section-header"><span class="section-title"><span class="accent">Growth Area 1:</span> Rebuild Sweet Potato Category Share</span></div>
+
+    <p>Davie's is losing share within the niche most directly aligned with the product. The priority for the rest of 2026 is to increase search-result coverage and improve Davie's ability to win the click.</p>
+
+    <div class="sub-heading">Expand Search-Result Coverage</div>
+    <p>Split the 2-pack from the current variation family and establish it as an independently rankable ASIN.</p>
+    <p>The 2-pack is already proven, with strong conversion and ~380 active subscriptions. Separating it creates a second opportunity for Davie's to appear organically and through advertising across the same high-value searches.</p>
+    <p>Position the two ASINs with different catalog roles:</p>
+    <ul class="bullet-list">
+      <li>1 lb - Hero acquisition offer</li>
+      <li>2-pack - Value/stock-up offer</li>
+    </ul>
+    <p>Support both across the priority Sweet Potato searches to increase Davie's overall search-result coverage.</p>
+
+    <div class="sub-heading">Strengthen Search-Result Presentation</div>
+    <p>Refine the 1 lb and 2-pack titles to better match how customers search and make Davie's key benefits clearer directly in the search results.</p>
+    <div class="accent-label">Prioritize</div>
+    <div class="term-highlight">
+      <div class="term-highlight-tags">
+        <span class="term-tag">Sweet Potato Dog Treats</span>
+        <span class="term-tag">Sweet Potato Chews for Dogs</span>
+        <span class="term-tag">Single Ingredient</span>
+        <span class="term-tag">Low Fat</span>
+        <span class="term-tag">Made in USA</span>
+        <span class="term-tag">Rawhide-Free</span>
+      </div>
+    </div>
+    <p>Replace lower-value language such as "Large &amp; Flexy" where stronger search terms or product benefits can take its place.</p>
+    <p>Develop new main image versions for testing against the current image, with the goal of improving Davie's ability to stand out and win the click against leading Sweet Potato Dog Treat competitors.</p>
+
+    <div class="sub-heading">Recover Priority Search Share</div>
+    <p>Concentrate SEO and advertising around the searches most directly aligned with Davie's.</p>
+    <div class="term-block-label">Primary</div>
+    <div class="term-highlight">
+      <div class="term-highlight-tags">
+        <span class="term-tag">sweet potato dog treats</span>
+        <span class="term-tag">dog sweet potato treats</span>
+        <span class="term-tag">sweet potato chews for dogs</span>
+        <span class="term-tag">sweet potato treats for dogs</span>
+      </div>
+    </div>
+    <div class="term-block-label">Supporting</div>
+    <div class="term-highlight">
+      <div class="term-highlight-tags">
+        <span class="term-tag">dried / dehydrated sweet potato dog treats</span>
+        <span class="term-tag">low fat dog treats</span>
+        <span class="term-tag">low fat dog treats for pancreatitis</span>
+        <span class="term-tag">sweet potato dog treats made in USA</span>
+      </div>
+    </div>
+    <p>Prioritize click share, purchase share and organic rank across these searches rather than broad impression growth.</p>
+
+    <div class="sub-heading">Expand Paid Search Presence</div>
+    <p>Increase Davie's coverage of high-value advertising placements across the priority Sweet Potato searches.</p>
+    <p>Develop a new, highly engaging video ad designed to stand out within the competitive search results and create an additional path into the listing.</p>
+
+    <div id="comments-s03"></div>
+  </div>
+</div>
+
+<!-- S04 — ADVERTISING STRATEGY -->
+<div class="section" id="s04">
+  <div class="content">
+    <div class="section-header"><span class="section-title">Advertising Strategy</span></div>
+
+    <p>Advertising's priority for September is to use the account's available TACOS headroom to rebuild rank and BSR ahead of Q4, rather than holding spend back and trying to build visibility during the events themselves.</p>
+
+    <div class="sub-heading">Where the Account Stands</div>
+    <p>Recent bid increases pushed CPCs up without a corresponding lift in clicks, rank, or sales, spend rose, but TACOS grew for the wrong reason. Bids and Top-of-Search placements on the primary ranking campaign have already been pulled back toward the January-March levels, the account's strongest performing window, and high ACOS discovery campaigns have been trimmed to protect profitability. This has stabilized spend efficiency and sets the base for the next move.</p>
+
+    <div class="sub-heading">Pre-Q4 Growth Push</div>
+    <p>The account has room to operate up to a 14% TACOS target and has not been using it. The priority for September is to spend into that ceiling deliberately, building rank and BSR while traffic is cheaper, so Davie's enters Q4 already visible rather than trying to buy visibility during Prime Big Deal Days and BFCM.</p>
+    <ul class="bullet-list">
+      <li>Rebuild TOS presence on the primary ranking campaign, scaling bids in stages rather than returning to previous levels in one move.</li>
+      <li>Use clicks and impression share as the leading signal that spend is converting into rank, not just TACOS.</li>
+      <li>Increase spend toward the 14% ceiling through September, checking weekly that rank and BSR are moving in response.</li>
+      <li>Hold the 2 pack out of heavy advertising until it is split and has its own performance data. Layering ad spend onto an unproven campaign risks diluting conversion rate for a margin benefit that hasn't been tested yet.</li>
+      <li>Expand on discovery campaigns after ranking push improves TACOS</li>
+    </ul>
+
+    <div id="comments-s04"></div>
+  </div>
+</div>
+
+<!-- S05 — GROWTH AREA 2 -->
+<div class="section" id="s05">
+  <div class="content">
+    <div class="section-header"><span class="section-title"><span class="accent">Growth Area 2:</span> Rebuild Sub&amp;Save Growth</span></div>
+
+    <p>Subscribe &amp; Save remains a major source of recurring revenue and customer value, but the active subscriber base has gradually declined through 2026.</p>
+    <p>The current 40% first-order Sub&amp;Save coupon + 10% ongoing discount is already highly competitive. The priority is therefore not deeper discounting, but bringing more new customers into the brand and converting more of them into subscribers.</p>
+
+    <div class="sub-heading">Rebuild New Subscriber Acquisition</div>
+    <p>Use recovered search traffic and new-customer growth from Growth Area 1 to create more opportunities to acquire new subscribers.</p>
+    <p>Maintain the current Sub&amp;Save offer and ensure it remains consistently available across the active Sweet Potato catalog.</p>
+
+    <div class="sub-heading">Monitor Subscriber Growth</div>
+    <p>Track Subscribe &amp; Save performance throughout the rest of 2026, including new subscriptions, cancellations, and net active subscriptions, to understand whether subscriber growth improves as traffic and new customer acquisition recover.</p>
+
+    <div id="comments-s05"></div>
+  </div>
+</div>
+
+<!-- S06 — SUPPORTING INITIATIVES -->
+<div class="section" id="s06">
+  <div class="content">
+    <div class="section-header"><span class="section-title">Supporting Initiatives</span></div>
+
+    <div class="sub-heading">Creator Connections</div>
+    <p>Continue Creator Connections as an additional customer acquisition channel for both the 1 lb hero offer and the 2-pack value offer.</p>
+    <p>Use creators to promote both pack sizes, positioning the 1 lb as the primary trial and acquisition offer and the 2-pack as the value option for repeat buyers and multi-dog households.</p>
+
+    <div class="sub-heading">Q4 Event Participation</div>
+    <p>Prepare Davie's for the key Q4 Amazon events, including Prime Big Deal Days and Black Friday/Cyber Monday.</p>
+    <p>Confirm event participation and offers in advance, ensure sufficient inventory is available, and align PPC support around the event periods to maximize visibility and sales.</p>
+
+    <div class="sub-heading">Content &amp; Store Maintenance</div>
+    <p>No major PDP or Store rebuild is required.</p>
+    <ul class="bullet-list">
+      <li>Update the A+ comparison table to focus on active Sweet Potato pack sizes.</li>
+      <li>Remove discontinued products from the Store and content where needed.</li>
+      <li>Maintain existing product education and Sub&amp;Save messaging.</li>
+      <li>Keep Store work to maintenance unless Advertising creates a stronger use for it.</li>
+    </ul>
+
+    <div id="comments-s06"></div>
+  </div>
+</div>
+
+<!-- S07 — ROADMAP & TRACKER -->
+<div class="section" id="s07">
+  <div class="content">
+    <div class="section-header"><span class="section-title">Roadmap &amp; Tracker</span></div>
+
+    <p>The Rest of 2026 Roadmap, tracked by month. Update a status as work moves along, edit an action's wording directly, add a comment, or add a new action under any month — changes sync live for the whole team.</p>
+
+    <div id="trackerRoot"></div>
+
+    <div id="comments-s07"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div style="text-align:center;width:100%;">
+    <svg class="ftr-mark" viewBox="0 0 8215.72 788.72" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="FTR"><g fill="#F2F4F6"><path d="M162 244V401H441V244ZM213 0H51V681H489V524H152L213 595Z" transform="translate(-10.14 734.86) scale(1 -1)"/><path d="M18 340Q18 418 43.0 482.5Q68 547 114.5 594.5Q161 642 225.5 668.0Q290 694 367 694Q444 694 508.5 668.0Q573 642 620.0 594.5Q667 547 692.0 482.5Q717 418 717 340Q717 263 692.0 198.0Q667 133 620.0 85.5Q573 38 508.5 12.5Q444 -13 367 -13Q290 -13 225.5 12.5Q161 38 114.5 85.5Q68 133 43.0 198.0Q18 263 18 340ZM183 340Q183 280 206.5 236.5Q230 193 272.0 170.0Q314 147 367 147Q422 147 463.0 170.0Q504 193 528.0 237.0Q552 281 552 341Q552 401 528.0 444.0Q504 487 463.0 510.5Q422 534 367 534Q314 534 272.0 510.5Q230 487 206.5 443.5Q183 400 183 340Z" transform="translate(500.86 734.86) scale(1 -1)"/><path d="M51 0V681H303Q377 681 436.0 652.5Q495 624 530.0 569.5Q565 515 565 438Q565 360 530.0 306.0Q495 252 436.0 224.0Q377 196 303 196H176V352H294Q345 352 372.5 374.0Q400 396 400 438Q400 480 372.5 502.0Q345 524 294 524H175L213 559V0ZM395 0 255 275H432L572 0Z" transform="translate(1234.86 734.86) scale(1 -1)"/><path d="M207 0V614H370V0ZM9 524V681H570V524Z" transform="translate(2087.86 734.86) scale(1 -1)"/><path d="M457 0V681H620V0ZM51 0V681H213V0ZM156 255V412H513V255Z" transform="translate(2667.86 734.86) scale(1 -1)"/><path d="M155 264V418H437V264ZM152 527 213 595V80L147 155H491V0H51V681H491V527Z" transform="translate(3338.86 734.86) scale(1 -1)"/><path d="M51 0V681H303Q377 681 436.0 652.5Q495 624 530.0 569.5Q565 515 565 438Q565 360 530.0 306.0Q495 252 436.0 224.0Q377 196 303 196H176V352H294Q345 352 372.5 374.0Q400 396 400 438Q400 480 372.5 502.0Q345 524 294 524H175L213 559V0ZM395 0 255 275H432L572 0Z" transform="translate(4127.86 734.86) scale(1 -1)"/><path d="M155 264V418H437V264ZM152 527 213 595V80L147 155H491V0H51V681H491V527Z" transform="translate(4720.86 734.86) scale(1 -1)"/><path d="M365 -13Q258 -13 180.0 32.0Q102 77 60.0 156.5Q18 236 18 340Q18 418 43.0 482.5Q68 547 114.0 594.5Q160 642 224.0 667.5Q288 693 365 693Q485 693 564.0 639.5Q643 586 681 484L536 425Q507 481 466.0 508.5Q425 536 365 536Q312 536 271.0 512.0Q230 488 206.5 444.0Q183 400 183 340Q183 280 206.5 236.0Q230 192 271.0 168.5Q312 145 365 145Q425 145 466.0 172.0Q507 199 536 255L681 196Q643 94 564.0 40.5Q485 -13 365 -13Z" transform="translate(5249.86 734.86) scale(1 -1)"/><path d="M18 340Q18 418 43.0 482.5Q68 547 114.5 594.5Q161 642 225.5 668.0Q290 694 367 694Q444 694 508.5 668.0Q573 642 620.0 594.5Q667 547 692.0 482.5Q717 418 717 340Q717 263 692.0 198.0Q667 133 620.0 85.5Q573 38 508.5 12.5Q444 -13 367 -13Q290 -13 225.5 12.5Q161 38 114.5 85.5Q68 133 43.0 198.0Q18 263 18 340ZM183 340Q183 280 206.5 236.5Q230 193 272.0 170.0Q314 147 367 147Q422 147 463.0 170.0Q504 193 528.0 237.0Q552 281 552 341Q552 401 528.0 444.0Q504 487 463.0 510.5Q422 534 367 534Q314 534 272.0 510.5Q230 487 206.5 443.5Q183 400 183 340Z" transform="translate(5940.86 734.86) scale(1 -1)"/><path d="M51 0V681H303Q377 681 436.0 652.5Q495 624 530.0 569.5Q565 515 565 438Q565 360 530.0 306.0Q495 252 436.0 224.0Q377 196 303 196H176V352H294Q345 352 372.5 374.0Q400 396 400 438Q400 480 372.5 502.0Q345 524 294 524H175L213 559V0ZM395 0 255 275H432L572 0Z" transform="translate(6674.86 734.86) scale(1 -1)"/><path d="M155 264V418H437V264ZM152 527 213 595V80L147 155H491V0H51V681H491V527Z" transform="translate(4720.86 734.86) scale(1 -1)"/><path d="M51 0V681H294Q402 681 479.0 640.5Q556 600 597.0 524.0Q638 448 638 341Q638 233 596.5 157.0Q555 81 478.0 40.5Q401 0 293 0ZM213 90 146 157H282Q340 157 382.5 175.5Q425 194 448.5 235.0Q472 276 472 341Q472 405 449.0 445.5Q426 486 383.5 505.0Q341 524 283 524H139L213 569Z" transform="translate(7267.86 734.86) scale(1 -1)"/></g><g fill="#F67A1C"><path d="M142 -12Q113 -12 88.0 3.0Q63 18 48.5 43.0Q34 68 34 97Q34 127 48.5 151.5Q63 176 88.0 191.0Q113 206 142 206Q174 206 198.5 191.0Q223 176 237.5 151.5Q252 127 252 97Q252 68 237.5 43.0Q223 18 198.5 3.0Q174 -12 142 -12ZM142 300Q113 300 88.0 315.0Q63 330 48.5 355.0Q34 380 34 409Q34 439 48.5 463.5Q63 488 88.0 503.0Q113 518 142 518Q174 518 198.5 503.0Q223 488 237.5 463.5Q252 439 252 409Q252 380 237.5 355.0Q223 330 198.5 315.0Q174 300 142 300Z" transform="translate(7922.86 734.86) scale(1 -1)"/></g></svg>
+    <div class="footer-claim">Brands built to be remembered.</div>
+    <div class="footer-label">Amazon &amp; Walmart Growth</div>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu(){ document.getElementById('navMobile').classList.toggle('open'); }
+
+  window.addEventListener('scroll',()=>{
+    const d=document.documentElement;
+    const pct=(d.scrollTop/(d.scrollHeight-d.clientHeight));
+    document.getElementById('progress').style.transform='scaleX('+pct+')';
+  });
+
+  const sections=document.querySelectorAll('.section');
+  const sectionObs=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting) e.target.classList.add('visible');});
+  },{threshold:0});
+  sections.forEach(s=>sectionObs.observe(s));
+  setTimeout(()=>{ sections.forEach(s=>s.classList.add('visible')); },1500);
+
+  /* ============================================================
+     SUPABASE — shared FTR Amazon Department project
+     ============================================================ */
+  const SUPABASE_URL='https://zbcqdcwibbuyfmytfngn.supabase.co';
+  const SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiY3FkY3dpYmJ1eWZteXRmbmduIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIyOTgyNTEsImV4cCI6MjA5Nzg3NDI1MX0.gXJna_dG08OVNyQy6VyakhJ7ays93ibLlWCDrS6W1RM';
+  const DOC_PREFIX='davies-naturals-rest-2026';
+
+  const SECTIONS={
+    's01':'01 · Objective',
+    's02':'02 · Current Snapshot',
+    's03':'03 · Growth Area 1: Rebuild Sweet Potato Category Share',
+    's04':'04 · Advertising Strategy',
+    's05':'05 · Growth Area 2: Rebuild Sub&Save Growth',
+    's06':'06 · Supporting Initiatives',
+    's07':'07 · Roadmap & Tracker'
+  };
+
+  async function fetchComments(){
+    try{
+      const ids=Object.keys(SECTIONS).map(s=>`${DOC_PREFIX}-${s}`);
+      const r=await fetch(
+        `${SUPABASE_URL}/rest/v1/comments?section_id=in.(${ids.map(s=>`"${s}"`).join(',')})&order=created_at.asc`,
+        {headers:{'apikey':SUPABASE_KEY,'Authorization':`Bearer ${SUPABASE_KEY}`}}
+      );
+      return await r.json();
+    }catch(e){return[];}
+  }
+
+  async function saveComment(sectionId,name,body){
+    const r=await fetch(`${SUPABASE_URL}/rest/v1/comments`,{
+      method:'POST',
+      headers:{
+        'apikey':SUPABASE_KEY,
+        'Authorization':`Bearer ${SUPABASE_KEY}`,
+        'Content-Type':'application/json',
+        'Prefer':'return=representation'
+      },
+      body:JSON.stringify({section_id:`${DOC_PREFIX}-${sectionId}`,name:name||'Anonymous',body})
+    });
+    if(!r.ok) throw new Error('Failed to save');
+    return await fetchComments();
+  }
+
+  function formatDate(iso){
+    const d=new Date(iso);
+    return d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})
+      +' · '+d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+  }
+
+  function escHtml(s){
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function renderSection(id,comments){
+    const container=document.getElementById('comments-'+id);
+    if(!container) return;
+    const fullId=`${DOC_PREFIX}-${id}`;
+    const sectionComments=comments.filter(c=>c.section_id===fullId);
+    const count=sectionComments.length;
+    container.innerHTML=`
+      <button class="section-comment-btn ${count>0?'has-comments':''}" onclick="togglePanel('${id}')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex-shrink:0"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        ${count>0?count+' comment'+(count>1?'s':''):'Add comment'}
+        <span class="cb-count">${count}</span>
+      </button>
+      <div class="comment-panel ${count>0?'open':''}" id="panel-${id}">
+        <div class="comment-panel-inner">
+          <div class="comment-thread" id="thread-${id}">
+            ${count===0?'<p class="no-comments">No comments yet on this section.</p>':
+              sectionComments.map(c=>`
+                <div class="comment-item">
+                  <div class="comment-item-header">
+                    <span class="comment-item-name">${escHtml(c.name||'Anonymous')}</span>
+                    <span class="comment-item-time">${formatDate(c.created_at)}</span>
+                  </div>
+                  <p class="comment-item-text">${escHtml(c.body)}</p>
+                </div>`).join('')}
+          </div>
+          <div class="comment-form">
+            <textarea id="txt-${id}" rows="2" placeholder="Write a comment or question on this section..."></textarea>
+            <div class="comment-form-row">
+              <input type="text" id="name-${id}" placeholder="Your name (optional)">
+              <button class="comment-post-btn" id="btn-${id}" onclick="postComment('${id}')">Post</button>
+            </div>
+            <div class="comment-status" id="status-${id}"></div>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  function togglePanel(id){
+    const panel=document.getElementById('panel-'+id);
+    panel.classList.toggle('open');
+    if(panel.classList.contains('open')){
+      setTimeout(()=>{const t=document.getElementById('txt-'+id);if(t)t.focus();},50);
+    }
+  }
+
+  async function postComment(id){
+    const txt=document.getElementById('txt-'+id);
+    const nameEl=document.getElementById('name-'+id);
+    const btn=document.getElementById('btn-'+id);
+    const status=document.getElementById('status-'+id);
+    const body=txt.value.trim();
+    if(!body){status.textContent='Please write something first.';status.style.color='#e0503a';return;}
+    btn.disabled=true;status.textContent='Posting...';status.style.color='var(--muted)';
+    try{
+      const comments=await saveComment(id,nameEl.value.trim(),body);
+      txt.value='';nameEl.value='';
+      status.textContent='Posted ✓';status.style.color='var(--orange)';
+      setTimeout(()=>{status.textContent='';},3000);
+      Object.keys(SECTIONS).forEach(sid=>renderSection(sid,comments));
+      setTimeout(()=>{const p=document.getElementById('panel-'+id);if(p)p.classList.add('open');},50);
+    }catch(e){
+      status.textContent='Failed to post. Please try again.';status.style.color='#e0503a';
+    }
+    btn.disabled=false;
+  }
+
+  async function initComments(){
+    const comments=await fetchComments();
+    Object.keys(SECTIONS).forEach(id=>renderSection(id,comments));
+    setTimeout(()=>{
+      Object.keys(SECTIONS).forEach(id=>{
+        const panel=document.getElementById('panel-'+id);
+        const hasComments=comments.some(c=>c.section_id===`${DOC_PREFIX}-${id}`);
+        if(panel&&hasComments) panel.classList.add('open');
+      });
+    },200);
+  }
+
+  /* ============================================================
+     TRACKER — event-sourced (append-only) so every team member's
+     edits sync through the same shared Supabase "comments" table,
+     using a distinct key pattern (~) so it never collides with the
+     dash-based section comment keys above.
+
+     Supported ops per event:
+       add    { action, group }   — seeds/creates an item
+       status { status }          — Pending / In Progress / Complete
+       edit   { action }          — rewrites the action's text
+       comment{ text }            — appends a threaded comment
+       delete {}                  — soft-removes the item
+     ============================================================ */
+  const TRACKER_LIKE = `${DOC_PREFIX}~*`;
+
+  async function fetchTrackerEvents(){
+    try{
+      const r = await fetch(`${SUPABASE_URL}/rest/v1/comments?section_id=like.${TRACKER_LIKE}&order=created_at.asc`,
+        { headers:{ apikey:SUPABASE_KEY, Authorization:`Bearer ${SUPABASE_KEY}` } });
+      if(!r.ok) throw new Error('fetch failed');
+      return await r.json();
+    }catch(e){ console.error(e); return null; }
+  }
+
+  async function pushTrackerEvent(phaseKey, itemId, author, payload){
+    const section_id = `${DOC_PREFIX}~${phaseKey}~${itemId}`;
+    const r = await fetch(`${SUPABASE_URL}/rest/v1/comments`, {
+      method:'POST',
+      headers:{ apikey:SUPABASE_KEY, Authorization:`Bearer ${SUPABASE_KEY}`,
+                'Content-Type':'application/json', 'Prefer':'return=representation' },
+      body: JSON.stringify({ section_id, name: author || 'Team', body: JSON.stringify(payload) })
+    });
+    if(!r.ok) throw new Error('save failed');
+    return await r.json();
+  }
+
+  function buildPhaseState(events, phaseKey, seedItems){
+    const items = {};
+    seedItems.forEach(s => { items[s.id] = { id:s.id, action:s.action, group:s.group||null, status:s.status||'Pending', deleted:false, comments:[] }; });
+
+    (events||[]).forEach(ev => {
+      const parts = ev.section_id.split('~');
+      if(parts[1] !== phaseKey) return;
+      const itemId = parts[2];
+      let payload; try{ payload = JSON.parse(ev.body); }catch(e){ return; }
+      if(!items[itemId]) items[itemId] = { id:itemId, action:'', group:null, status:'Pending', deleted:false, comments:[] };
+      if(payload.op === 'add'){
+        items[itemId].action = payload.action;
+        items[itemId].group = payload.group || null;
+        items[itemId].status = 'Pending';
+        items[itemId].deleted = false;
+      } else if(payload.op === 'status'){
+        items[itemId].status = payload.status;
+      } else if(payload.op === 'edit'){
+        items[itemId].action = payload.action;
+      } else if(payload.op === 'delete'){
+        items[itemId].deleted = true;
+      } else if(payload.op === 'comment'){
+        items[itemId].comments.push({ name: ev.name, text: payload.text, created_at: ev.created_at });
+      }
+    });
+    return Object.values(items).filter(i => !i.deleted);
+  }
+
+  function statusClass(status){
+    return 'status-' + status.toLowerCase().replace(/\s+/g,'-');
+  }
+
+  /* ============================================================
+     PHASE CONFIG — seeded from the Rest of 2026 Roadmap in the
+     strategy document. New items / edits added by the team append
+     as event rows, they don't modify this seed list.
+     ============================================================ */
+  const PHASES = [
+    { key:'sep', label:'September', sub:'',
+      seed:[
+        {id:'sepi1', action:'Split 2-pack'},
+        {id:'sepi2', action:'Refine 1 lb and 2-pack titles and SEO'},
+        {id:'sepi3', action:'Develop new main image versions for testing'},
+        {id:'sepi4', action:'Begin targeting priority Sweet Potato searches through SEO and PPC'},
+        {id:'sepi5', action:'Update A+ comparison table'},
+        {id:'sepi6', action:'Confirm Prime Big Deal Days participation and offer'},
+        {id:'sepi7', action:'Prepare inventory and PPC support for Prime Big Deal Days'},
+      ]},
+    { key:'oct', label:'October', sub:'',
+      seed:[
+        {id:'octi1', action:'Build 2-pack organic visibility'},
+        {id:'octi2', action:'Implement the updated PPC strategy'},
+        {id:'octi3', action:'Launch main image test'},
+        {id:'octi4', action:'Develop and launch new video creative'},
+        {id:'octi5', action:'Execute Prime Big Deal Days plan'},
+        {id:'octi6', action:'Finalize Black Friday/Cyber Monday offer and support'},
+      ]},
+    { key:'nov', label:'November', sub:'',
+      seed:[
+        {id:'novi1', action:'Scale winning search placements'},
+        {id:'novi2', action:'Continue Creator Connections'},
+        {id:'novi3', action:'Monitor search share, rank, sessions, and subscriber acquisition'},
+        {id:'novi4', action:'Execute Black Friday/Cyber Monday plan'},
+      ]},
+    { key:'dec', label:'December', sub:'',
+      seed:[
+        {id:'deci1', action:'Optimize based on performance'},
+        {id:'deci2', action:'Protect search gains'},
+        {id:'deci3', action:'Evaluate category share and subscriber recovery going into 2027'},
+      ]},
+  ];
+
+  const STATUS_OPTIONS = ['Pending','In Progress','Complete'];
+  let ALL_TRACKER_EVENTS = [];
+
+  function renderTracker(){
+    const root = document.getElementById('trackerRoot');
+    root.innerHTML = '';
+    let total = 0, complete = 0;
+
+    const phaseStates = PHASES.map(phase => {
+      const items = buildPhaseState(ALL_TRACKER_EVENTS, phase.key, phase.seed);
+      total += items.length;
+      complete += items.filter(i => i.status === 'Complete').length;
+      return { phase, items };
+    });
+
+    const overallPct = total ? Math.round((complete/total)*100) : 0;
+    const progressWrap = document.createElement('div');
+    progressWrap.className = 'tk-progress-wrap';
+    progressWrap.innerHTML = `
+      <div class="tk-progress-stat">${complete}<span>/${total}</span></div>
+      <div class="tk-progress-track"><div class="tk-progress-fill" style="width:${overallPct}%"></div></div>
+      <div class="tk-progress-lbl">${overallPct}% Complete</div>`;
+    root.appendChild(progressWrap);
+
+    phaseStates.forEach(({phase, items}) => {
+      const wrap = document.createElement('div');
+      wrap.className = 'tk-phase';
+      wrap.innerHTML = `
+        <div class="tk-phase-hdr">
+          <div class="tk-phase-rule"></div>
+          <div class="tk-phase-pill"><span class="tk-phase-lbl">${escHtml(phase.label)}</span></div>
+          <div class="tk-phase-rule"></div>
+        </div>
+        <div class="tk-body-mobile" data-phase="${phase.key}"></div>
+        <div class="tk-table-wrap" data-phase="${phase.key}"></div>
+        <button class="tk-add-toggle" data-phase="${phase.key}" data-role="add-toggle">+ Add Action to ${escHtml(phase.label)}</button>
+        <div class="tk-add-form" data-phase="${phase.key}" style="display:none;">
+          <input type="text" placeholder="New action…" data-role="add-input">
+          <button class="tk-add-btn" data-role="add-submit">Add</button>
+        </div>
+      `;
+      root.appendChild(wrap);
+
+      const body = wrap.querySelector('.tk-body-mobile');
+      items.forEach(i => body.appendChild(renderTrackerCard(phase.key, i)));
+
+      const tableWrap = wrap.querySelector('.tk-table-wrap');
+      tableWrap.appendChild(renderTrackerTable(phase.key, items));
+
+      wrap.querySelector('[data-role="add-toggle"]').addEventListener('click', () => {
+        const form = wrap.querySelector('.tk-add-form');
+        form.style.display = form.style.display === 'none' ? 'flex' : 'none';
+        if (form.style.display === 'flex') form.querySelector('input').focus();
+      });
+      wrap.querySelector('[data-role="add-submit"]').addEventListener('click', async () => {
+        const input = wrap.querySelector('[data-role="add-input"]');
+        const val = input.value.trim();
+        if (!val) return;
+        const newId = 'new-' + Date.now() + '-' + Math.random().toString(36).slice(2,7);
+        const btn = wrap.querySelector('[data-role="add-submit"]');
+        btn.disabled = true; btn.textContent = 'Adding…';
+        try{
+          await pushTrackerEvent(phase.key, newId, 'Team', { op:'add', action: val, group:null });
+          input.value = '';
+          wrap.querySelector('.tk-add-form').style.display = 'none';
+          await reloadTracker();
+        }catch(e){
+          alert('Could not add action — check your connection and try again.');
+        }
+        btn.disabled = false; btn.textContent = 'Add';
+      });
+    });
+  }
+
+  /* ---------- shared comment panel markup + wiring ---------- */
+  function commentPanelBodyHTML(domId, item){
+    const commentCount = (item.comments || []).length;
+    const thread = commentCount === 0
+      ? '<p class="tk-no-comments">No comments yet on this action.</p>'
+      : item.comments.map(c => `
+          <div class="tk-comment-item">
+            <div class="tk-comment-item-header">
+              <span class="tk-comment-item-name">${escHtml(c.name||'Anonymous')}</span>
+              <span class="tk-comment-item-time">${formatDate(c.created_at)}</span>
+            </div>
+            <p class="tk-comment-item-text">${escHtml(c.text)}</p>
+          </div>`).join('');
+    return `
+      <div class="tk-comment-thread" id="tk-thread-${domId}">${thread}</div>
+      <div class="tk-comment-form">
+        <textarea id="tk-txt-${domId}" rows="2" placeholder="Add a comment on this action..."></textarea>
+        <div class="tk-comment-form-row">
+          <input type="text" id="tk-name-${domId}" placeholder="Your name (optional)">
+          <button class="tk-comment-post-btn" id="tk-btn-${domId}" data-role="comment-post">Post</button>
+        </div>
+        <div class="tk-comment-status" id="tk-status-msg-${domId}"></div>
+      </div>`;
+  }
+
+  function wireCommentForm(container, phaseKey, item, domId, reopenDomId){
+    container.querySelector('[data-role="comment-post"]').addEventListener('click', async () => {
+      const txt = document.getElementById(`tk-txt-${domId}`);
+      const nameEl = document.getElementById(`tk-name-${domId}`);
+      const btn = document.getElementById(`tk-btn-${domId}`);
+      const status = document.getElementById(`tk-status-msg-${domId}`);
+      const body = txt.value.trim();
+      if(!body){ status.textContent = 'Please write something first.'; status.style.color = '#e0503a'; return; }
+      btn.disabled = true; status.textContent = 'Posting...'; status.style.color = 'var(--muted)';
+      try{
+        await pushTrackerEvent(phaseKey, item.id, nameEl.value.trim() || 'Anonymous', { op:'comment', text: body });
+        await reloadTracker(reopenDomId);
+      }catch(e){
+        status.textContent = 'Failed to post. Please try again.'; status.style.color = '#e0503a';
+        btn.disabled = false;
+      }
+    });
+  }
+
+  /* ---------- shared edit-in-place wiring ---------- */
+  function editWrapHTML(domId, item){
+    return `
+      <div class="tk-edit-wrap" data-role="edit-wrap" id="tk-edit-${domId}">
+        <textarea class="tk-edit-textarea" data-role="edit-textarea">${escHtml(item.action)}</textarea>
+        <div class="tk-edit-actions">
+          <button class="tk-edit-save" data-role="edit-save">Save</button>
+          <button class="tk-edit-cancel" data-role="edit-cancel">Cancel</button>
+        </div>
+      </div>`;
+  }
+
+  function wireEditControls(container, phaseKey, item, domId, actionTextEl, reopenDomId){
+    const editToggle = container.querySelector('[data-role="edit-toggle"]');
+    const editWrap = container.querySelector('[data-role="edit-wrap"]');
+    const textarea = container.querySelector('[data-role="edit-textarea"]');
+    const saveBtn = container.querySelector('[data-role="edit-save"]');
+    const cancelBtn = container.querySelector('[data-role="edit-cancel"]');
+
+    editToggle.addEventListener('click', () => {
+      actionTextEl.classList.add('hidden');
+      editWrap.classList.add('open');
+      textarea.focus();
+      textarea.setSelectionRange(textarea.value.length, textarea.value.length);
+    });
+
+    cancelBtn.addEventListener('click', () => {
+      textarea.value = item.action;
+      editWrap.classList.remove('open');
+      actionTextEl.classList.remove('hidden');
+    });
+
+    saveBtn.addEventListener('click', async () => {
+      const newVal = textarea.value.trim();
+      if(!newVal) return;
+      saveBtn.disabled = true; saveBtn.textContent = 'Saving…';
+      try{
+        await pushTrackerEvent(phaseKey, item.id, 'Team', { op:'edit', action: newVal });
+        await reloadTracker(reopenDomId);
+      }catch(e){
+        alert('Could not save the edit — check your connection and try again.');
+        saveBtn.disabled = false; saveBtn.textContent = 'Save';
+      }
+    });
+  }
+
+  /* ---------- mobile card ---------- */
+  function renderTrackerCard(phaseKey, item){
+    const domId = `m-${phaseKey}-${item.id}`;
+    const commentCount = (item.comments || []).length;
+    const card = document.createElement('div');
+    card.className = 'tk-card';
+    card.innerHTML = `
+      <div class="tk-card-top">
+        <div class="tk-action-wrap">
+          <div class="tk-action" data-role="action-text">${escHtml(item.action)}</div>
+          ${editWrapHTML(domId, item)}
+        </div>
+        <div class="tk-card-controls">
+          <button class="tk-icon-btn" data-role="edit-toggle" title="Edit action">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </button>
+          <button class="tk-comment-btn ${commentCount>0?'has-comments':''}" data-role="comment-toggle" title="Comments">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Comment
+            ${commentCount>0?`<span class="tk-badge">${commentCount}</span>`:''}
+          </button>
+          <button class="tk-icon-btn" data-role="delete" title="Remove">✕</button>
+        </div>
+      </div>
+      <span class="tk-status-label">Status</span>
+      <select class="tk-status-select ${statusClass(item.status)}" data-role="status"></select>
+      <div class="tk-comment-panel" id="tk-panel-${domId}">${commentPanelBodyHTML(domId, item)}</div>`;
+
+    const actionTextEl = card.querySelector('[data-role="action-text"]');
+    wireEditControls(card, phaseKey, item, domId, actionTextEl, domId);
+
+    const select = card.querySelector('[data-role="status"]');
+    select.innerHTML = STATUS_OPTIONS.map(o => `<option value="${o}" ${o===item.status?'selected':''}>${o}</option>`).join('');
+    select.addEventListener('change', async (e) => {
+      const newStatus = e.target.value;
+      select.className = 'tk-status-select ' + statusClass(newStatus);
+      try{
+        await pushTrackerEvent(phaseKey, item.id, 'Team', { op:'status', status:newStatus });
+      }catch(err){ alert('Could not save status — check your connection.'); }
+      await reloadTracker();
+    });
+
+    card.querySelector('[data-role="delete"]').addEventListener('click', async () => {
+      if (!confirm('Remove this action from the tracker? This cannot be undone.')) return;
+      try{
+        await pushTrackerEvent(phaseKey, item.id, 'Team', { op:'delete' });
+        await reloadTracker();
+      }catch(e){ alert('Could not remove action — check your connection.'); }
+    });
+
+    card.querySelector('[data-role="comment-toggle"]').addEventListener('click', () => {
+      const panel = card.querySelector(`#tk-panel-${domId}`);
+      panel.classList.toggle('open');
+      if (panel.classList.contains('open')) {
+        setTimeout(() => { const t = document.getElementById(`tk-txt-${domId}`); if(t) t.focus(); }, 50);
+      }
+    });
+
+    wireCommentForm(card, phaseKey, item, domId, domId);
+    return card;
+  }
+
+  /* ---------- desktop table ---------- */
+  function renderTrackerTable(phaseKey, items){
+    const table = document.createElement('table');
+    table.className = 'tk-table';
+    table.innerHTML = `
+      <thead>
+        <tr>
+          <th>Action</th>
+          <th class="tk-th-center">Status</th>
+          <th class="tk-th-center">Edit</th>
+          <th class="tk-th-center">Comments</th>
+          <th class="tk-th-center"></th>
+        </tr>
+      </thead>
+      <tbody></tbody>`;
+    const tbody = table.querySelector('tbody');
+
+    items.forEach(item => {
+      const domId = `t-${phaseKey}-${item.id}`;
+      const commentCount = (item.comments || []).length;
+
+      const row = document.createElement('tr');
+      row.className = 'tk-row';
+      row.innerHTML = `
+        <td class="tk-td-action">
+          <div class="tk-action" data-role="action-text">${escHtml(item.action)}</div>
+          ${editWrapHTML(domId, item)}
+        </td>
+        <td class="tk-td-status"><select class="tk-status-select ${statusClass(item.status)}" data-role="status"></select></td>
+        <td class="tk-td-edit"><button class="tk-icon-btn" data-role="edit-toggle" title="Edit action">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        </button></td>
+        <td class="tk-td-comments">
+          <button class="tk-icon-btn ${commentCount>0?'has-comments':''}" data-role="comment-toggle" title="Comments">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            ${commentCount>0?`<span class="tk-badge">${commentCount}</span>`:''}
+          </button>
+        </td>
+        <td class="tk-td-delete"><button class="tk-icon-btn" data-role="delete" title="Remove">✕</button></td>`;
+
+      const commentRow = document.createElement('tr');
+      commentRow.className = 'tk-comment-row';
+      commentRow.id = `tk-panel-${domId}`;
+      commentRow.innerHTML = `<td colspan="5"><div class="tk-comment-row-inner">${commentPanelBodyHTML(domId, item)}</div></td>`;
+
+      const actionTextEl = row.querySelector('[data-role="action-text"]');
+      wireEditControls(row, phaseKey, item, domId, actionTextEl, domId);
+
+      const select = row.querySelector('[data-role="status"]');
+      select.innerHTML = STATUS_OPTIONS.map(o => `<option value="${o}" ${o===item.status?'selected':''}>${o}</option>`).join('');
+      select.addEventListener('change', async (e) => {
+        const newStatus = e.target.value;
+        select.className = 'tk-status-select ' + statusClass(newStatus);
+        try{
+          await pushTrackerEvent(phaseKey, item.id, 'Team', { op:'status', status:newStatus });
+        }catch(err){ alert('Could not save status — check your connection.'); }
+        await reloadTracker();
+      });
+
+      row.querySelector('[data-role="delete"]').addEventListener('click', async () => {
+        if (!confirm('Remove this action from the tracker? This cannot be undone.')) return;
+        try{
+          await pushTrackerEvent(phaseKey, item.id, 'Team', { op:'delete' });
+          await reloadTracker();
+        }catch(e){ alert('Could not remove action — check your connection.'); }
+      });
+
+      row.querySelector('[data-role="comment-toggle"]').addEventListener('click', () => {
+        commentRow.classList.toggle('open');
+        if (commentRow.classList.contains('open')) {
+          setTimeout(() => { const t = document.getElementById(`tk-txt-${domId}`); if(t) t.focus(); }, 50);
+        }
+      });
+
+      wireCommentForm(commentRow, phaseKey, item, domId, domId);
+
+      tbody.appendChild(row);
+      tbody.appendChild(commentRow);
+    });
+
+    return table;
+  }
+
+  async function reloadTracker(reopenDomId){
+    const events = await fetchTrackerEvents();
+    if (events !== null) ALL_TRACKER_EVENTS = events;
+    renderTracker();
+    if (reopenDomId){
+      const panel = document.getElementById('tk-panel-' + reopenDomId);
+      if (panel) panel.classList.add('open');
+    }
+  }
+
+  initComments();
+  reloadTracker();
+</script>
+</body>
+</html>
